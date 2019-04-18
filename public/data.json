@@ -1,0 +1,20 @@
+[
+    {
+        "firstName": "Bob",
+        "lastName": "lolo",
+        "country": "israel",
+        "bugs": ["bug 1", "bug 2"]
+    },
+    {
+        "firstName": "Marry",
+        "lastName": "shabtai",
+        "country": "israel",
+        "bugs": ["bug 3", "bug 4"]
+    },
+    {
+        "firstName": "Shalo",
+        "lastName": "tsarfati",
+        "country": "bogi",
+        "bugs": ["bug 5", "bug 6"]
+    }
+]

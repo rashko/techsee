@@ -12,17 +12,18 @@ export default class TestersTable extends React.Component {
         return (<div className={'testersTable'}>
         {error && <div className={'error'}>Temporary error occurred, please try again later</div>}
         {!error && data.length > 0 && 
-        <div>
-            <div className="row">
-                <div className="th">First name</div>
-                <div className="th">Last name</div>
-                <div className="th">Country</div>
-                <div className="th">Bugs</div>
-                </div>
+        <div className="table">
+                <div className="cell heading sorted" onClick={() => this.handleSort('firstName')} >First name</div>
+                <div className="cell heading sorted" onClick={() => this.handleSort('lastName')}>Last name</div>
+                <div className="cell heading sorted" onClick={() => this.handleSort('country')}>Country</div>
+                <div className="cell heading">Bugs</div>
                 {rows}
-        </div>
-        
+                </div>
         }
       </div>)
+    }
+
+    handleSort(key){
+        this.props.handleSort(key);
     }
 }
