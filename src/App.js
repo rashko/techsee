@@ -4,21 +4,18 @@ import classnames from 'classnames';
 import './App.css';
 import TestersTable from './components/testersTable';
 
-const _URL = 'https://test-api.techsee.me/api/ex/';
-const URL = '/data.json';
+const URL = 'https://test-api.techsee.me/api/ex/';
 export default class App extends React.Component {
   constructor(props){
     super(props);
     this.handleChange = this.handleChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-    this.handleSort = this.handleSort.bind(this);
     this.state = {
       testerName: '',
       data: [],
       error: false,
       validationError: true,
-      orderBy: 'firstName',
-      ascending: true
+      
     }
   }
   render() {
@@ -29,29 +26,13 @@ export default class App extends React.Component {
         <h1>Search Bugs</h1>
         <form className="form">
           <input className={inputClass} placeholder="Enter the tester name" onChange={this.handleChange} value={testerName} />
-          <button className="search-button" onClick={this.handleSearch} disabled={validationError} >Search</button>
+          <button className="search-button" onClick={this.handleSearch} disabled={validationError} >Fetch</button>
         </form>
-        <TestersTable handleSort={this.handleSort} data={data} error={error} />
+        {data.length > 0 && <TestersTable data={data} error={error} />}
       </div>
     );
   }
 
-  handleSort(orderBy){
-    const data = [...this.state.data];
-    const {ascending} = this.state;
-    this.setState({
-      ascending: !ascending,
-      data: data.sort(this.sortingHelper(orderBy, ascending))
-    })
-  }
-
-  sortingHelper(key, ascending){
-    return function(a, b){
-      if(a[key] < b[key]) { return ascending ? -1 : 1; }
-      if(a[key] > b[key]) { return ascending ? 1 : -1; }
-      return 0
-    }
-  }
 
   handleChange(e){
     const testerName = e.target.value;
@@ -62,7 +43,7 @@ export default class App extends React.Component {
   handleSearch(e){
     e.preventDefault();
     const term = this.state.testerName;
-    axios.get(`${URL}`)
+    axios.get(`${URL}${term}`)
       .then(response => {
         let data;
         if(Array.isArray(response.data)){

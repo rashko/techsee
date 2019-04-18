@@ -13,6 +13,6 @@ export default class TableRow extends React.Component {
     }
 
     renderBugs(bugs){
-        return bugs.join(', ');
+        return bugs.map(bug => bug.title).join(', ');
     }
 }
