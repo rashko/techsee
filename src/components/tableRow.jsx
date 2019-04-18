@@ -2,8 +2,8 @@ import * as React from "react";
 
 export default class TableRow extends React.Component {
 
-    render(){
-        const {firstName, lastName, country, bugs} = this.props;
+    render() {
+        const { firstName, lastName, country, bugs } = this.props;
         return <>
             <div className="cell">{firstName}</div>
             <div className="cell">{lastName}</div>
@@ -12,7 +12,7 @@ export default class TableRow extends React.Component {
         </>
     }
 
-    renderBugs(bugs){
+    renderBugs(bugs) {
         return bugs.map(bug => bug.title).join(', ');
     }
 }
